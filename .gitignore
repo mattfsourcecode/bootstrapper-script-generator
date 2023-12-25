@@ -1,0 +1,9 @@
+/node_modules
+/dist
+*.tgz
+*.log
+.DS_Store
+.env
+pnpm-debug.log*
+bootstrap.sh
+
