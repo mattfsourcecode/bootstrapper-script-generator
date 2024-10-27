@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * This TypeScript module provides utility functions to create a bootstrap script
  * for a given project directory. The script includes all the necessary files from
