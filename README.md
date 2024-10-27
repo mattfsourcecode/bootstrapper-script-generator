@@ -11,7 +11,7 @@ To get started locally with this _pre-release node module_, follow these steps:
 1. Clone the repository to the local machine:
 
    ```bash
-   git clone git@github.com:matt-development-work/bootstrapper-script-generator.git
+   git clone git@github.com:mattfsourcecode/bootstrapper-script-generator.git
    ```
 
 2. Navigate to the project directory:

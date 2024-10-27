@@ -9,7 +9,7 @@
     "prepublish": "npm run build"
   },
   "keywords": [],
-  "author": "@matt-development-work",
+  "author": "@mattfsourcecode",
   "devDependencies": {
     "@swc-node/register": "^1.6.8",
     "@swc/cli": "^0.1.63",
@@ -25,6 +25,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matt-development-work/bootstrapper-script-generator.git"
+    "url": "git+https://github.com/mattfsourcecode/bootstrapper-script-generator.git"
   }
 }
