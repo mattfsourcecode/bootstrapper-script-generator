@@ -1,6 +1,6 @@
 {
   "name": "bootstrapper-script-generator",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A command-line tool designed to simplify the initialization of new codebase projects.",
   "main": "dist/index.js",
   "scripts": {
