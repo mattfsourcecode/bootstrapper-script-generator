@@ -1,8 +1,10 @@
-# Bootstrapper Script Generator
+# [Bootstrapper Script Generator](https://www.npmjs.com/package/bootstrapper-script-generator)
 
-### A command-line tool that generates a script to reproduce an entire project's directory structure, customizable to accept [command-line interface arguments](https://en.wikipedia.org/wiki/Command-line_interface#Arguments) for conditional inclusion or exclusion of specified contents and additional script execution.
+## Overview
 
-## Installation
+A command-line interface tool that generates a shell script to reproduce an entire project's directory structure, customizable to accept arguments for conditional inclusion or exclusion of specified contents and additional script execution.
+
+## Install globally
 
 1. Install the package globally using npm:
 
@@ -36,4 +38,4 @@
 
 ---
 
-### Enjoy using the **Bootstrapper Script Generator** to simplify new project creation!
+### Enjoy using the **Bootstrapper Script Generator** to customize new framework creation!
