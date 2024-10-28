@@ -1,6 +1,6 @@
 {
   "name": "bootstrapper-script-generator",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "CLI tool that generates customizable shell scripts for bootstrapping specifiable codebase directories",
   "main": "dist/index.js",
   "scripts": {
@@ -8,8 +8,21 @@
     "build": "rimraf dist && swc src -d dist",
     "prepublish": "npm run build"
   },
-  "keywords": [],
-  "author": "@mattfsourcecode",
+  "keywords": [
+    "script",
+    "generator",
+    "cli",
+    "shell",
+    "zsh",
+    "command-line",
+    "nodejs",
+    "file-system",
+    "bootstrapper"
+  ],
+  "author": {
+    "name": "@mattfsourcecode",
+    "url": "https://github.com/mattfsourcecode"
+  },
   "dependencies": {
     "@swc/helpers": "^0.5.13",
     "shelljs": "^0.8.5"
