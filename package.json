@@ -1,8 +1,15 @@
 {
   "name": "bootstrapper-script-generator",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "CLI tool that generates customizable shell scripts for bootstrapping specifiable codebase directories",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattfsourcecode/bootstrapper-script-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mattfsourcecode/bootstrapper-script-generator/issues"
+  },
   "scripts": {
     "dev": "DEV_MODE=true nodemon --watch 'src' --ext '*' --exec 'node -r @swc-node/register' src/index.ts",
     "build": "rimraf dist && swc src -d dist",
@@ -37,9 +44,5 @@
   },
   "bin": {
     "make-bootstrapper-script": "./dist/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mattfsourcecode/bootstrapper-script-generator.git"
   }
 }
