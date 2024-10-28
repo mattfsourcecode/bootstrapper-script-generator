@@ -6,11 +6,9 @@ A command-line interface tool that generates a shell script to reproduce an enti
 
 ## Install globally
 
-1. Install the package globally using npm:
-
-   ```bash
-   npm install -g bootstrapper-script-generator
-   ```
+```bash
+npm i -g bootstrapper-script-generator
+```
 
 ## Usage
 
@@ -34,7 +32,7 @@ A command-line interface tool that generates a shell script to reproduce an enti
    ./new-bootstrapper-script.zsh
    ```
 
-   This will recreate the project's structure and contents in the current directory.
+   This recreates the project's structure and contents in the current directory.
 
 ---
 
