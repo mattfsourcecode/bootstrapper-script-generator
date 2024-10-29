@@ -1,6 +1,6 @@
 {
   "name": "bootstrapper-script-generator",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "CLI tool that generates customizable shell scripts for bootstrapping specifiable codebase directories",
   "main": "dist/index.js",
   "repository": {

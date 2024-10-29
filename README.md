@@ -2,7 +2,7 @@
 
 ## Overview
 
-A command-line interface tool that generates a shell script to reproduce an entire project's directory structure, customizable to accept arguments for conditional inclusion or exclusion of specified contents and additional script execution.
+A command-line interface tool that generates a shell script to reproduce an entire project's directory structure. The script can be customized to accept arguments for the conditional inclusion or exclusion of specified contents and additional script execution, providing flexibility for framework development.
 
 ## Install globally
 
@@ -36,4 +36,4 @@ npm i -g bootstrapper-script-generator
 
 ---
 
-### Enjoy using the **Bootstrapper Script Generator** to customize new framework creation!
+### Enjoy using the **Bootstrapper Script Generator** module to customize new framework creation!
