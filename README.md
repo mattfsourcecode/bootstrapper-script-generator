@@ -37,3 +37,5 @@ npm i -g bootstrapper-script-generator
 ---
 
 ### Enjoy using the **Bootstrapper Script Generator** module to customize new framework creation!
+
+<img width="300" alt="logo" src="https://github.com/user-attachments/assets/a6907512-87a4-45de-9188-cdc494dfe5a8">
