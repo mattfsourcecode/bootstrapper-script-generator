@@ -1,8 +1,9 @@
 {
   "name": "bootstrapper-script-generator",
-  "version": "1.0.12",
+  "version": "1.0.17",
   "description": "CLI tool that generates customizable shell scripts for bootstrapping specifiable codebase directories",
   "main": "dist/index.js",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mattfsourcecode/bootstrapper-script-generator.git"
@@ -10,27 +11,25 @@
   "bugs": {
     "url": "https://github.com/mattfsourcecode/bootstrapper-script-generator/issues"
   },
-  "scripts": {
-    "dev": "DEV_MODE=true nodemon --watch 'src' --ext '*' --exec 'node -r @swc-node/register' src/index.ts",
-    "build": "rimraf dist && swc src -d dist",
-    "prepublish": "npm run build"
+  "author": {
+    "name": "@mattfsourcecode",
+    "url": "https://github.com/mattfsourcecode"
   },
   "keywords": [
-    "script",
-    "generator",
+    "bootstrapper",
+    "script-generator",
     "cli",
     "shell",
     "zsh",
     "command-line",
     "nodejs",
-    "file-system",
-    "bootstrapper"
+    "file-system"
   ],
-  "author": {
-    "name": "@mattfsourcecode",
-    "url": "https://github.com/mattfsourcecode"
+  "scripts": {
+    "dev": "DEV_MODE=true nodemon --watch 'src' --ext '*' --exec 'node -r @swc-node/register' src/index.ts",
+    "build": "rimraf dist && swc src -d dist",
+    "prepublish": "npm run build"
   },
-  "license": "MIT",
   "dependencies": {
     "@swc/helpers": "^0.5.13",
     "shelljs": "^0.8.5"
