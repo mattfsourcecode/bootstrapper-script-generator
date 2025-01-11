@@ -28,7 +28,7 @@
   "scripts": {
     "dev": "DEV_MODE=true nodemon --watch 'src' --ext '*' --exec 'node -r @swc-node/register' src/index.ts",
     "build": "rimraf dist && swc src -d dist && mv dist/src/* dist/ && rm -r dist/src",
-    "prepublish": "npm run build"
+    "prepublish": "pnpm run build"
   },
   "dependencies": {
     "@swc/helpers": "^0.5.15",
