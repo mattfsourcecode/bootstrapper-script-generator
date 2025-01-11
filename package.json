@@ -27,20 +27,20 @@
   ],
   "scripts": {
     "dev": "DEV_MODE=true nodemon --watch 'src' --ext '*' --exec 'node -r @swc-node/register' src/index.ts",
-    "build": "rimraf dist && swc src -d dist",
+    "build": "rimraf dist && swc src -d dist && mv dist/src/* dist/ && rm -r dist/src",
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@swc/helpers": "^0.5.13",
+    "@swc/helpers": "^0.5.15",
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
     "@swc-node/register": "^1.10.9",
-    "@swc/cli": "^0.1.65",
-    "@swc/core": "^1.7.40",
+    "@swc/cli": "^0.6.0",
+    "@swc/core": "^1.10.7",
     "@types/shelljs": "^0.8.15",
-    "nodemon": "^3.1.7",
-    "rimraf": "^5.0.10"
+    "nodemon": "^3.1.9",
+    "rimraf": "^6.0.1"
   },
   "bin": {
     "make-bootstrapper-script": "./dist/index.js"
