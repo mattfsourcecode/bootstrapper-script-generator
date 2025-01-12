@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /**
  * This TypeScript module provides utility functions to create a bootstrap script
  * for a given project directory. The script includes all the necessary files from
@@ -43,13 +41,35 @@ function shouldIgnore(file: string): boolean {
 }
 
 /**
+ * Maps shell file extensions to their corresponding shebang lines.
+ * Used to automatically detect and set the appropriate shebang based on output filename.
+ */
+const SHEBANG_MAP = {
+  zsh: "#!/usr/bin/env zsh",
+  bash: "#!/usr/bin/env bash",
+  sh: "#!/bin/sh",
+} as const;
+
+/**
+ * Determines the appropriate shebang line based on the file extension.
+ * Defaults to sh shebang if the extension is not recognized.
+ *
+ * @param filename - The output filename including extension
+ * @returns The shebang line with trailing newlines
+ */
+const getShebang = (filename: string): string => {
+  const ext = filename.split(".").pop() as keyof typeof SHEBANG_MAP;
+  return (SHEBANG_MAP[ext] || SHEBANG_MAP.sh) + "\n\n";
+};
+
+/**
  * Generates a shell script that creates a bootstrap script for a project directory.
  * @param outputFileName - The name of the output script file.
  * @param dirPath - The path of the project directory.
  * @returns The generated shell script as a string.
  */
 function createProjectScript(outputFileName: string, dirPath: string): string {
-  let script = "#!/bin/sh\n\n";
+  let script = getShebang(outputFileName);
 
   shell.find(dirPath).forEach((file) => {
     if (shouldIgnore(file) || shell.test("-d", file)) return;
