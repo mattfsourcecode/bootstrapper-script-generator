@@ -69,6 +69,18 @@ const getShebang = (filename: string): string => {
  * @returns The generated shell script as a string.
  */
 function createProjectScript(outputFileName: string, dirPath: string): string {
+  // Validate extension if an argument was provided
+  if (process.argv[2]) {
+    const ext = outputFileName.split(".").pop();
+    const validExtensions = Object.keys(SHEBANG_MAP);
+    if (!validExtensions.includes(ext)) {
+      console.error(`Error: Invalid shell script extension '.${ext}'`);
+      console.error(`Valid extensions are: ${validExtensions.join(", ")}`);
+      console.error("Leave empty to generate bootstrap.sh");
+      process.exit(1);
+    }
+  }
+
   let script = getShebang(outputFileName);
 
   shell.find(dirPath).forEach((file) => {
@@ -112,6 +124,7 @@ function createProjectScript(outputFileName: string, dirPath: string): string {
 }
 
 const outputFileName = process.argv[2] || "bootstrap.sh"; // Use "bootstrap.sh" if no output file name is provided
+
 const dirPath = process.argv[3] || "."; // Use the current directory if no directory path is provided
 
 // Generate the script as a shell command
