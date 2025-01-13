@@ -1,5 +1,7 @@
 # [Bootstrapper Script Generator](https://www.npmjs.com/package/bootstrapper-script-generator)
 
+[**Web app demo**](https://bootstrapper-script-generator.netlify.app)
+
 ## Overview
 
 A command-line tool that generates a shell script to reproduce an entire codebase. The script can be customized to accept arguments to conditionally include or exclude specified contents, and execute additional scripts, providing flexible control for framework instantiation.
