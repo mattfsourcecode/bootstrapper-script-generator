@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * This TypeScript module provides utility functions to create a bootstrap script
  * for a given project directory. The script includes all the necessary files from
@@ -24,7 +25,6 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import * as shell from "shelljs";
 
 /**
  * Patterns for files and directories that are always ignored.
@@ -38,6 +38,36 @@ const alwaysIgnorePatterns = ["node_modules", ".git", "dist", ".*\\.env.*"];
  */
 function shouldIgnore(file: string): boolean {
   return alwaysIgnorePatterns.some((pattern) => file.includes(pattern));
+}
+
+/**
+ * Recursively finds all files in a directory while respecting ignore patterns.
+ * This replaces `shell.find(dirPath)`.
+ *
+ * @param dirPath - The directory to search.
+ * @returns An array of file paths.
+ */
+function findFiles(dirPath: string): string[] {
+  let fileList: string[] = [];
+
+  for (const file of fs.readdirSync(dirPath)) {
+    const filePath = path.join(dirPath, file);
+    const stat = fs.statSync(filePath);
+
+    if (stat.isDirectory()) {
+      // Skip ignored directories
+      if (!shouldIgnore(filePath)) {
+        fileList = fileList.concat(findFiles(filePath));
+      }
+    } else {
+      // Add file if it's not ignored
+      if (!shouldIgnore(filePath)) {
+        fileList.push(filePath);
+      }
+    }
+  }
+
+  return fileList;
 }
 
 /**
@@ -83,9 +113,8 @@ function createProjectScript(outputFileName: string, dirPath: string): string {
 
   let script = getShebang(outputFileName);
 
-  shell.find(dirPath).forEach((file) => {
-    if (shouldIgnore(file) || shell.test("-d", file)) return;
-
+  // Iterate over all files in the directory while respecting ignore patterns
+  findFiles(dirPath).forEach((file) => {
     const relativePath = path.relative(dirPath, file);
 
     // Create directories if they don't exist
@@ -94,18 +123,12 @@ function createProjectScript(outputFileName: string, dirPath: string): string {
     if (file.endsWith(".ts") || file.endsWith(".tsx")) {
       // Special handling for TypeScript files
       const fileContents = fs.readFileSync(file, "utf8");
-      script += `cat > "\${PWD}/${path.join(
-        path.dirname(outputFileName),
-        relativePath
-      )}" <<'EOF'\n`;
+      script += `cat > "\${PWD}/${relativePath}" <<'EOF'\n`;
       script += `${fileContents}\n`;
       script += `EOF\n`;
     } else {
       // Regular handling for other file types
-      script += `cat > "\${PWD}/${path.join(
-        path.dirname(outputFileName),
-        relativePath
-      )}" <<'EOF'\n`;
+      script += `cat > "\${PWD}/${relativePath}" <<'EOF'\n`;
       script += `${fs.readFileSync(file, "utf8")}\n`;
       script += `EOF\n`;
     }
@@ -120,11 +143,11 @@ function createProjectScript(outputFileName: string, dirPath: string): string {
     script += `${gitignoreContents}\n`;
     script += `EOF\n`;
   }
+
   return script;
 }
 
 const outputFileName = process.argv[2] || "bootstrap.sh"; // Use "bootstrap.sh" if no output file name is provided
-
 const dirPath = process.argv[3] || "."; // Use the current directory if no directory path is provided
 
 // Generate the script as a shell command
