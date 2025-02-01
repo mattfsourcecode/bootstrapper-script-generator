@@ -4,6 +4,9 @@
   "description": "CLI tool that generates customizable shell scripts for bootstrapping specifiable codebase directories",
   "main": "dist/index.js",
   "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mattfsourcecode/bootstrapper-script-generator.git"
