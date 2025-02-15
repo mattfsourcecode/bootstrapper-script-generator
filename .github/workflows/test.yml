@@ -1,0 +1,94 @@
+name: Test Bootstrapper Script Generator
+
+on:
+  pull_request:
+    branches:
+      - master
+  pull_request_target:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm build
+
+      - name: Create test directories
+        run: |
+          mkdir test-dir
+          mkdir -p test-source test-output scripts
+          # Copy project files with text mode and line ending normalization
+          rsync -av --no-times \
+            --exclude 'node_modules' \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'test-dir' \
+            --exclude 'test-output' \
+            --exclude 'test-source' \
+            --exclude 'scripts' \
+            --exclude 'dist' \
+            --cvs-exclude \
+            . test-source/
+
+      - name: Pack and install globally
+        run: |
+          npm pack
+          sudo npm install -g $(ls bootstrapper-script-generator-*.tgz)
+
+      - name: Generate and run bootstrap script
+        run: |
+          # Generate bootstrap script in scripts directory
+          npx make-bootstrapper-script scripts/bootstrap.sh test-source
+          chmod +x scripts/bootstrap.sh
+
+          # Execute bootstrap script in test-output directory
+          cd test-output
+          ../scripts/bootstrap.sh
+          cd ..
+
+      - name: Install dos2unix
+        run: sudo apt-get update && sudo apt-get install -y dos2unix
+
+      - name: Remove trailing blank lines
+        run: |
+          find test-source test-output -type f -exec sed -i ':a;/^\n*$/{$d;N;};/\n$/ba' {} +
+
+      - name: Compare directories
+        run: |
+          echo -e "\n=== Directory Comparison ==="
+          diff_output=$(diff -r --ignore-all-space --strip-trailing-cr test-source test-output || true)
+          if [ -n "$diff_output" ]; then
+            echo "Directory comparison failed. Differences found:"
+            echo "$diff_output"
+            exit 1
+          else
+            echo "Directories are identical!"
+          fi
+
+      - name: Debug differences
+        run: |
+          diff -rq test-source test-output | awk '{print $2}' | while read file; do
+            echo "=== Debugging $file ==="
+            echo "Hex dump of test-source/$file:"
+            xxd "test-source/${file#test-source/}" || echo "File not found in test-source: $file"
+            echo "Hex dump of test-output/$file:"
+            xxd "test-output/${file#test-output/}" || echo "File not found in test-output: $file"
+          done
