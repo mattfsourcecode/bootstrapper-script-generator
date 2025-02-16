@@ -92,3 +92,6 @@ jobs:
             echo "Hex dump of test-output/$file:"
             xxd "test-output/${file#test-output/}" || echo "File not found in test-output: $file"
           done
+
+      - name: Test npm publish
+        run: npm publish --dry-run
