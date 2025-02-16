@@ -36,28 +36,9 @@ npm i -g bootstrapper-script-generator
 
    This recreates the codebase in the current directory.
 
----
-
-### Enjoy using the **Bootstrapper Script Generator** to customize new framework creation!
-
 <br>
-<img width="300" alt="logo" src="https://github.com/user-attachments/assets/a6907512-87a4-45de-9188-cdc494dfe5a8">
-
-## Licensing
-
-This project is licensed under the MIT License.
-
-### Third-Party Licenses
-
-The repository uses some third-party dependencies under other licenses:
-
-- Apache-2.0
-- BSD-3-Clause
-- ISC
-
-The full texts of these licenses are included in the repository.
+<img width="300" alt="logo" src="https://github.com/user-attachments/assets/ee70394a-ac30-45d5-8dc9-a100f71f9819">
 
 ## Contributions and Issues
 
-Contributions are welcome! If you have ideas for improvements, please open an issue first for discussion before submitting a pull request.  
-You can report issues or start discussions here: [Open an issue](https://github.com/mattfsourcecode/bootstrapper-script-generator/issues)
+Contributions are welcome! If you have ideas for improvements, [open an issue](https://github.com/mattfsourcecode/bootstrapper-script-generator/issues).
