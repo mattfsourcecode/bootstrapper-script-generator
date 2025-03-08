@@ -37,7 +37,7 @@ npm i -g bootstrapper-script-generator
    This recreates the codebase in the current directory.
 
 <br>
-<img width="300" alt="logo" src="https://github.com/user-attachments/assets/ee70394a-ac30-45d5-8dc9-a100f71f9819">
+<img width="300" alt="Large metal and wood 'JS' letters standing on the forest floor, surrounded by fallen leaves and moss-covered tree roots, with a misty forest background." src="https://github.com/user-attachments/assets/b8c4edad-f0f3-4369-8fe4-1d30fd55281d">
 
 ## Contributions and Issues
 
